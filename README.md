@@ -1,6 +1,6 @@
 # bag_clone
 
-A new Flutter project.
+Flutter solo project for learning listview, routing and passing arguments 
 
 ## Getting Started
 
