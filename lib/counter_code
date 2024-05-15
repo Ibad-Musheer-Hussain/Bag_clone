@@ -1,0 +1,211 @@
+// ignore: unused_import
+import 'package:bag_clone/product.dart';
+import 'package:flutter/material.dart';
+import 'CustomRadiobutton.dart';
+import 'Appbar.dart';
+
+class ItemsScreen extends StatefulWidget {
+  const ItemsScreen({super.key});
+
+  @override
+  _ItemsScreenState createState() => _ItemsScreenState();
+}
+
+class _ItemsScreenState extends State<ItemsScreen> {
+  Color _selectedColor = Colors.grey;
+  int itemAmount = 0;
+  void _increment() {
+    setState(() {
+      itemAmount++;
+    });
+  }
+
+  void _decrement() {
+    setState(() {
+      if (itemAmount > 0) itemAmount--;
+    });
+  }
+
+  //Color color = ModalRoute.of(context)!.settings.arguments as Color;
+  //Product product = ModalRoute.of(context)!.settings.arguments as Product;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      appBar: Appbar(appbarcolor: Colors.blue),
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width * .06, 0, 0, 0),
+            child: Container(
+              child: Text('Title'),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * .1,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width * .06, 0, 0, 0),
+            child: Container(
+              child: Text('Description'),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * .1,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width * .06, 0, 0, 0),
+            child: Container(
+              child: Text('Price'),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * .1,
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width * .06, 0, 0, 0),
+            child: Container(
+              child: Text('Price in Dollars'),
+            ),
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.width * .06,
+          ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black, // Shadow color
+                    offset: Offset(0, 2), // Offset of the shadow
+                    blurRadius: 4.0, // Blur radius of the shadow
+                    spreadRadius: 2.0, // Spread radius of the shadow
+                  ),
+                ],
+                color: Colors.white,
+                border: Border.all(color: Colors.white),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  //SizedBox(height: MediaQuery.of(context).size.width * .2,),
+                  Row(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * .06,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.08,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Color",
+                                        textAlign: TextAlign.start,
+                                      ),
+                                      Row(
+                                        children: [
+                                          CustomRadioButton(
+                                            color: Colors.blue,
+                                            selectedColor: _selectedColor,
+                                            onChanged: (selectedColor) {
+                                              setState(() {
+                                                _selectedColor = selectedColor;
+                                              });
+                                            },
+                                          ),
+                                          CustomRadioButton(
+                                            color: Colors.red,
+                                            selectedColor: _selectedColor,
+                                            onChanged: (selectedColor) {
+                                              setState(() {
+                                                _selectedColor = selectedColor;
+                                              });
+                                            },
+                                          ),
+                                          CustomRadioButton(
+                                            color: Colors.grey,
+                                            selectedColor: _selectedColor,
+                                            onChanged: (selectedColor) {
+                                              setState(() {
+                                                _selectedColor = selectedColor;
+                                              });
+                                            },
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(20, 20, 10, 10),
+                    child: Container(
+                      child: Text(
+                          'lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum'),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(20, 20, 10, 20),
+                    child: Row(
+                      children: [
+                        FloatingActionButton.small(
+                          backgroundColor: Colors.white,
+                          onPressed: _decrement,
+                          child: Icon(Icons.remove),
+                        ),
+                        Container(
+                          width: 30,
+                          height: 30,
+                          child: Center(child: Text('${itemAmount}')),
+                        ),
+                        FloatingActionButton.small(
+                          backgroundColor: Colors.white,
+                          onPressed: _increment,
+                          child: Icon(Icons.add),
+                        ),
+                        Spacer(flex: 7),
+                        FloatingActionButton.small(
+                          elevation: 4.0,
+                          onPressed: () {},
+                          child: Icon(Icons.monitor_heart),
+                        ),
+                        Spacer(
+                          flex: 1,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+//FOR COLORS AND SIZE USE CONTAINERS WITH FLEX TO DIVIDE SCREEN AND THEN USE ROW
