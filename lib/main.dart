@@ -75,8 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 40,
               width: MediaQuery.of(context).size.width / 1.38,
               child: SearchBar(
-                //hintText: "Search for vehicles",
-
                 hintStyle: MaterialStateProperty.all(
                   const TextStyle(
                     color: Colors.grey,
